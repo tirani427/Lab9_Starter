@@ -69,21 +69,21 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button id="console-log">Console Log</button>
+      <button id="console-err">Console Error</button>
+      <button id="console-count">Console Count</button>
+      <button id="console-warn">Console Warn</button>
+      <button id="console-assert">Console Assert</button>
+      <button id="console-clear">Console Clear</button>
+      <button id="console-dir">Console Dir</button>
+      <button id="console-dirxml">Console dirxml</button>
+      <button id="console-group-start">Console Group Start</button>
+      <button id="console-group-end">Console Group End</button>
+      <button id="console-table">Console Table</button>
+      <button id="start-timer">Start Timer</button>
+      <button id="end-timer">End Timer</button>
+      <button id="console-trace">Console Trace</button>
+      <button id="trigger-global-err">Trigger a Global Error</button>
     </section>
   </main>
 
@@ -102,7 +102,108 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    let btn_log = document.getElementById('console-log');
+    btn_log.addEventListener('click', () => {
+      console.log('Console Log Clicked');
+    });
+
+    let btn_err = document.getElementById('console-err');
+    btn_err.addEventListener('click', () => {
+      console.error('Console Error Clicked');
+    });
+
+    let btn_count = document.getElementById('console-count');
+    btn_count.addEventListener('click', () =>{
+      console.count();
+    });
+
+    let btn_warn = document.getElementById('console-warn');
+    btn_warn.addEventListener('click', () => {
+      console.warn('Console Warn Clicked.');
+    });
+
+    let btn_assert = document.getElementById('console-assert');
+    btn_assert.addEventListener('click', () => {
+      console.assert(1 > 3, 'false, 1 should be less than 3');
+    });
+
+    let btn_clear = document.getElementById('console-clear');
+    btn_clear.addEventListener('click', () => {
+      console.clear();
+    });
+
+    let btn_dir = document.getElementById('console-dir');
+    btn_dir.addEventListener('click', () => {
+      console.dir(form);
+    });
+
+    let btn_dirxml = document.getElementById('console-dirxml');
+    btn_dirxml.addEventListener('click', () => {
+      console.dirxml(form);
+    });
+
+    let btn_groupstart = document.getElementById('console-group-start');
+    btn_groupstart.addEventListener('click', () => {
+      console.group();
+    });
+
+    let btn_groupend = document.getElementById('console-group-end');
+    btn_groupend.addEventListener('click', () => {
+      console.groupEnd();
+    });
+
+    let btn_table = document.getElementById('console-table');
+    btn_table.addEventListener('click', () => {
+      console.table(form);
+    });
+
+    let btn_starttimer = document.getElementById('start-timer');
+    btn_starttimer.addEventListener('click', () => {
+      console.time();
+    });
+
+    let btn_endtimer = document.getElementById('end-timer');
+    btn_endtimer.addEventListener('click', () => {
+      console.timeEnd();
+    });
+
+    let btn_trace = document.getElementById('console-trace');
+    btn_trace.addEventListener('click', () => {
+      console.trace();
+    });
+
+    let btn_globalerror = document.getElementById('trigger-global-err');
+    btn_globalerror.addEventListener('click', () => {
+      try{
+        notGonnaWork();
+      }
+      catch(err){
+        throw new ReferenceError("variable doesn't exist");
+        alert(err.message);
+      }
+    });
+
+    function notGonnaWork(){
+      let variable1 = document.getElementById('console-log');
+      return variable2;
+    }
+
+    window.onerror = function(message, source, lineno, colno, error){
+      console.log(message);
+      console.log(error);
+      return true;
+    }
   </script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "a2ce429ac2124afea180d9c36d2aa750"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+    TrackJS.track('Testing TrackJS!');
+  </script>
+                          
 </body>
 
 </html>
